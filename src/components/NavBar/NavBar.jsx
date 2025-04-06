@@ -72,7 +72,7 @@ const NavBar = () => {
             <li>
               <NavLink
                 to="/"
-                className="block py-2 md:py-1 px-3 md:px-4 text-white md:text-black md:bg-transparent"
+                className="block py-2 md:py-1 px-3 md:px-4 text-black md:text-black md:bg-transparent"
                 aria-current="page"
               >
                 Home
