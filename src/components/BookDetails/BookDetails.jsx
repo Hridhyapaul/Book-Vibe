@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList } from "../../assets/utility/addToDB";
 
 const BookDetails = () => {
   const { bookId } = useParams();
@@ -7,7 +8,6 @@ const BookDetails = () => {
   const data = useLoaderData();
 
   const book = data.find((book) => book.bookId === id);
-  console.log(book);
 
   const {
     bookName,
@@ -21,6 +21,10 @@ const BookDetails = () => {
     publisher,
     yearOfPublishing,
   } = book;
+
+  const handleMarkAsRead = (id) => {
+    addToStoredReadList(id);
+  };
 
   return (
     <div className="w-full mx-auto rounded-lg flex justify-between items-stretch gap-6">
@@ -57,34 +61,39 @@ const BookDetails = () => {
         <hr className="mt-3 border-t-1 border-gray-300" />
         <div className="mt-4">
           <table className="text-left">
-            <tr>
-              <th scope="row" className="font-normal text-[#5a5a5a] py-1">
-                Number of Pages:
-              </th>
-              <td class="px-6 font-semibold">{totalPages}</td>
-            </tr>
-            <tr>
-              <th scope="row" className="font-normal text-[#5a5a5a] py-1">
-                Publisher:
-              </th>
-              <td class="px-6 font-semibold">{publisher}</td>
-            </tr>
-            <tr>
-              <th scope="row" className="font-normal text-[#5a5a5a] py-1">
-                Year of Publishing:
-              </th>
-              <td class="px-6 font-semibold">{yearOfPublishing}</td>
-            </tr>
-            <tr>
-              <th scope="row" className="font-normal text-[#5a5a5a] py-1">
-                Rating:
-              </th>
-              <td class="px-6 font-semibold">{rating}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <th scope="row" className="font-normal text-[#5a5a5a] py-1">
+                  Number of Pages:
+                </th>
+                <td class="px-6 font-semibold">{totalPages}</td>
+              </tr>
+              <tr>
+                <th scope="row" className="font-normal text-[#5a5a5a] py-1">
+                  Publisher:
+                </th>
+                <td class="px-6 font-semibold">{publisher}</td>
+              </tr>
+              <tr>
+                <th scope="row" className="font-normal text-[#5a5a5a] py-1">
+                  Year of Publishing:
+                </th>
+                <td class="px-6 font-semibold">{yearOfPublishing}</td>
+              </tr>
+              <tr>
+                <th scope="row" className="font-normal text-[#5a5a5a] py-1">
+                  Rating:
+                </th>
+                <td class="px-6 font-semibold">{rating}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className="mt-5">
-          <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group border-1 border-[#5a5a5a] hover:bg-[#51b1c9] hover:border-[#51b1c9] hover:text-white">
+          <button
+            onClick={() => handleMarkAsRead(bookId)}
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group border-1 border-[#5a5a5a] hover:bg-[#51b1c9] hover:border-[#51b1c9] hover:text-white"
+          >
             <span class="relative px-5 py-2.5 transition-all ease-in-out duration-75 bg-white rounded-md group-hover:bg-transparent">
               Read
             </span>
