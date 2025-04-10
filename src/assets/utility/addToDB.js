@@ -1,3 +1,5 @@
+// ========== Read List ==========
+
 const getStoredReadList = () => {
   const storedListStr = localStorage.getItem("read-list");
   if (storedListStr) {
@@ -19,4 +21,27 @@ const addToStoredReadList = (id) => {
   }
 };
 
-export { addToStoredReadList };
+// ========== Wish List ==========
+
+const getStoredWishList = () => {
+  const storedWishListStr = localStorage.getItem("wish-list");
+  if (storedWishListStr) {
+    const storedWishList = JSON.parse(storedWishListStr);
+    return storedWishList;
+  } else {
+    return [];
+  }
+};
+
+const addToStoredWishList = (id) => {
+  const storedWishList = getStoredWishList();
+  if (storedWishList.includes(id)) {
+    console.log(id, "already exist in the Wish-list");
+  } else {
+    storedWishList.push(id);
+    const storedWishListStr = JSON.stringify(storedWishList);
+    localStorage.setItem("wish-list", storedWishListStr);
+  }
+};
+
+export { addToStoredReadList, addToStoredWishList };

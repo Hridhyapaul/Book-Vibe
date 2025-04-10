@@ -1,6 +1,9 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import { addToStoredReadList } from "../../assets/utility/addToDB";
+import {
+  addToStoredReadList,
+  addToStoredWishList,
+} from "../../assets/utility/addToDB";
 
 const BookDetails = () => {
   const { bookId } = useParams();
@@ -24,6 +27,10 @@ const BookDetails = () => {
 
   const handleMarkAsRead = (id) => {
     addToStoredReadList(id);
+  };
+
+  const handleMarkAsWish = (id) => {
+    addToStoredWishList(id);
   };
 
   return (
@@ -98,7 +105,10 @@ const BookDetails = () => {
               Read
             </span>
           </button>
-          <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group border-1 border-[#5a5a5a] hover:bg-[#51b1c9] hover:border-[#51b1c9] hover:text-white">
+          <button
+            onClick={() => handleMarkAsWish(bookId)}
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group border-1 border-[#5a5a5a] hover:bg-[#51b1c9] hover:border-[#51b1c9] hover:text-white"
+          >
             <span class="relative px-5 py-2.5 transition-all ease-in-out duration-75 bg-white rounded-md group-hover:bg-transparent">
               Wishlist
             </span>
